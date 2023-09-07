@@ -28,7 +28,7 @@ public struct AssetImageProvider: ImageProvider {
     self.bundle = bundle
   }
 
-  public func makeImage(url: URL?) -> some View {
+  public func makeImage(url: URL?, alt: String? = nil, destination: String? = nil) -> some View {
     if let url = url, let image = self.image(url: url) {
       ResizeToFit(idealSize: image.size) {
         Image(platformImage: image)
