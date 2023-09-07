@@ -23,19 +23,19 @@ public protocol ImageProvider {
   /// will call this method for each image in their contents.
   ///
   /// - Parameter url: The URL of the image to display.
-  @ViewBuilder func makeImage(url: URL?) -> Body
+  @ViewBuilder func makeImage(url: URL?, alt: String?, destination: String?) -> Body
 }
 
 struct AnyImageProvider: ImageProvider {
-  private let _makeImage: (URL?) -> AnyView
+  private let _makeImage: (URL?, String?, String?) -> AnyView
 
   init<I: ImageProvider>(_ imageProvider: I) {
     self._makeImage = {
-      AnyView(imageProvider.makeImage(url: $0))
+      AnyView(imageProvider.makeImage(url: $0, alt: $1, destination: $2))
     }
   }
 
-  func makeImage(url: URL?) -> some View {
-    self._makeImage(url)
+  func makeImage(url: URL?, alt: String? = nil, destination: String? = nil) -> some View {
+    self._makeImage(url, alt, destination)
   }
 }

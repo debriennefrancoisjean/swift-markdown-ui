@@ -10,7 +10,7 @@ public struct DefaultImageProvider: ImageProvider {
     self.urlSession = urlSession
   }
 
-  public func makeImage(url: URL?) -> some View {
+  public func makeImage(url: URL?, alt: String? = nil, destination: String? = nil) -> some View {
     DefaultImageView(url: url, urlSession: self.urlSession)
   }
 }
