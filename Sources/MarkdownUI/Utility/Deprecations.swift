@@ -1,5 +1,21 @@
 import SwiftUI
 
+// MARK: - Deprecated after 2.1.0:
+
+extension DefaultImageProvider {
+  @available(*, deprecated, message: "Use the 'default' static property")
+  public init(urlSession: URLSession = .shared) {
+    self.init()
+  }
+}
+
+extension DefaultInlineImageProvider {
+  @available(*, deprecated, message: "Use the 'default' static property")
+  public init(urlSession: URLSession = .shared) {
+    self.init()
+  }
+}
+
 // MARK: - Deprecated after 2.0.2:
 
 extension BlockStyle where Configuration == BlockConfiguration {
@@ -30,8 +46,7 @@ extension View {
   @available(
     *,
     deprecated,
-    message:
-      """
+    message: """
       Use the version of this function that takes a closure receiving a generic 'Configuration'
       value.
       """
@@ -46,8 +61,7 @@ extension View {
   @available(
     *,
     deprecated,
-    message:
-      """
+    message: """
       Use the version of this function that takes a closure receiving a generic 'Configuration'
       value.
       """
@@ -69,8 +83,7 @@ extension Theme {
   @available(
     *,
     deprecated,
-    message:
-      """
+    message: """
       Use the version of this function that takes a closure receiving a 'BlockConfiguration'
       value.
       """
@@ -86,8 +99,7 @@ extension Theme {
   @available(
     *,
     deprecated,
-    message:
-      """
+    message: """
       Use the version of this function that takes a closure receiving a 'BlockConfiguration'
       value.
       """
@@ -103,8 +115,7 @@ extension Theme {
   @available(
     *,
     deprecated,
-    message:
-      """
+    message: """
       Use the version of this function that takes a closure receiving a 'BlockConfiguration'
       value.
       """
@@ -120,8 +131,7 @@ extension Theme {
   @available(
     *,
     deprecated,
-    message:
-      """
+    message: """
       Use the version of this function that takes a closure receiving a 'BlockConfiguration'
       value.
       """
@@ -137,8 +147,7 @@ extension Theme {
   @available(
     *,
     deprecated,
-    message:
-      """
+    message: """
       Use the version of this function that takes a closure receiving a 'BlockConfiguration'
       value.
       """
@@ -154,8 +163,7 @@ extension Theme {
   @available(
     *,
     deprecated,
-    message:
-      """
+    message: """
       Use the version of this function that takes a closure receiving a 'BlockConfiguration'
       value.
       """
@@ -171,8 +179,7 @@ extension Theme {
   @available(
     *,
     deprecated,
-    message:
-      """
+    message: """
       Use the version of this function that takes a closure receiving a 'BlockConfiguration'
       value.
       """
@@ -188,8 +195,7 @@ extension Theme {
   @available(
     *,
     deprecated,
-    message:
-      """
+    message: """
       Use the version of this function that takes a closure receiving a 'BlockConfiguration'
       value.
       """
@@ -205,8 +211,7 @@ extension Theme {
   @available(
     *,
     deprecated,
-    message:
-      """
+    message: """
       Use the version of this function that takes a closure receiving a 'CodeBlockConfiguration'
       value.
       """
@@ -224,8 +229,7 @@ extension Theme {
   @available(
     *,
     deprecated,
-    message:
-      """
+    message: """
       Use the version of this function that takes a closure receiving a 'BlockConfiguration'
       value.
       """
@@ -241,8 +245,7 @@ extension Theme {
   @available(
     *,
     deprecated,
-    message:
-      """
+    message: """
       Use the version of this function that takes a closure receiving a 'BlockConfiguration'
       value.
       """
@@ -258,8 +261,7 @@ extension Theme {
   @available(
     *,
     deprecated,
-    message:
-      """
+    message: """
       Use the version of this function that takes a closure receiving a 'BlockConfiguration'
       value.
       """
@@ -275,8 +277,7 @@ extension Theme {
   @available(
     *,
     deprecated,
-    message:
-      """
+    message: """
       Use the version of this function that takes a closure receiving a 'BlockConfiguration'
       value.
       """
@@ -314,11 +315,10 @@ public typealias InlineCode = Code
 @available(
   *,
   unavailable,
-  message:
+  message: """
+    "MarkdownImageHandler" has been superseded by the "ImageProvider" protocol and its conforming
+    types "DefaultImageProvider" and "AssetImageProvider".
     """
-   "MarkdownImageHandler" has been superseded by the "ImageProvider" protocol and its conforming
-   types "DefaultImageProvider" and "AssetImageProvider".
-   """
 )
 public struct MarkdownImageHandler {
   public static var networkImage: Self {
@@ -337,11 +337,10 @@ extension Markdown {
   @available(
     *,
     unavailable,
-    message:
+    message: """
+      "MarkdownImageHandler" has been superseded by the "ImageProvider" protocol and its conforming
+      types "DefaultImageProvider" and "AssetImageProvider".
       """
-     "MarkdownImageHandler" has been superseded by the "ImageProvider" protocol and its conforming
-     types "DefaultImageProvider" and "AssetImageProvider".
-     """
   )
   public func setImageHandler(
     _ imageHandler: MarkdownImageHandler,
@@ -365,11 +364,10 @@ extension View {
 @available(
   *,
   unavailable,
-  message:
+  message: """
+    "MarkdownStyle" and its subtypes have been superseded by the "Theme", "TextStyle", and
+    "BlockStyle" types.
     """
-   "MarkdownStyle" and its subtypes have been superseded by the "Theme", "TextStyle", and
-   "BlockStyle" types.
-   """
 )
 public struct MarkdownStyle: Hashable {
   public struct Font: Hashable {
@@ -485,11 +483,10 @@ extension View {
   @available(
     *,
     unavailable,
-    message:
+    message: """
+      "MarkdownStyle" and its subtypes have been superseded by the "Theme", "TextStyle", and
+      "BlockStyle" types.
       """
-     "MarkdownStyle" and its subtypes have been superseded by the "Theme", "TextStyle", and
-     "BlockStyle" types.
-     """
   )
   public func markdownStyle(_ markdownStyle: MarkdownStyle) -> some View {
     self

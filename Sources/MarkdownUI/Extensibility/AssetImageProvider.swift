@@ -38,14 +38,14 @@ public struct AssetImageProvider: ImageProvider {
   }
 
   private func image(url: URL) -> PlatformImage? {
-    #if os(macOS)
+    #if canImport(UIKit)
+      return UIImage(named: self.name(url), in: self.bundle, with: nil)
+    #elseif canImport(AppKit)
       if let bundle, bundle != .main {
         return bundle.image(forResource: self.name(url))
       } else {
         return NSImage(named: self.name(url))
       }
-    #elseif canImport(UIKit)
-      return UIImage(named: self.name(url), in: self.bundle, with: nil)
     #endif
   }
 }
@@ -56,5 +56,21 @@ extension ImageProvider where Self == AssetImageProvider {
   /// Use the `markdownImageProvider(_:)` modifier to configure this image provider for a view hierarchy.
   public static var asset: Self {
     .init()
+  }
+}
+
+#if canImport(UIKit)
+  private typealias PlatformImage = UIImage
+#elseif canImport(AppKit)
+  private typealias PlatformImage = NSImage
+#endif
+
+extension Image {
+  fileprivate init(platformImage: PlatformImage) {
+    #if canImport(UIKit)
+      self.init(uiImage: platformImage)
+    #elseif canImport(AppKit)
+      self.init(nsImage: platformImage)
+    #endif
   }
 }
