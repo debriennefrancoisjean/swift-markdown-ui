@@ -3,7 +3,7 @@ import SwiftUI
 
 /// The default image provider, which loads images from the network.
 public struct DefaultImageProvider: ImageProvider {
-  public func makeImage(url: URL?) -> some View {
+    public func makeImage(url: URL?, alt: String? = nil, destination: String? = nil) -> some View {
     NetworkImage(url: url) { state in
       switch state {
       case .empty, .failure:
